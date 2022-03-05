@@ -1,0 +1,17 @@
+{
+  "username_taken": {
+    "message": "Username is already taken!"
+  },
+  "email_taken": {
+    "message": "Email is already taken!"
+  },
+  "register_successful": {
+    "message": "User registered successfully!"
+  },
+  "signin_success": {
+    "message": "User signed-in successfully!"
+  },
+  "signin_fail": {
+    "message": "User sign-in failed."
+  }
+}
