@@ -8,8 +8,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.storage.metadata.model.User;
 import org.storage.metadata.repository.UserRepository;
-import org.storage.metadata.worker.dto.LoginDTO;
-import org.storage.metadata.worker.dto.SignUpDTO;
+import org.storage.metadata.model.orchestrator.dto.LoginDTO;
+import org.storage.metadata.model.orchestrator.dto.SignUpDTO;
+import org.storage.metadata.validator.UserValidator;
 
 @Service
 public class UserAuthService {
@@ -23,11 +24,13 @@ public class UserAuthService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final UserValidator userValidator;
 
-    UserAuthService(AuthenticationManager authenticationManager, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    UserAuthService(AuthenticationManager authenticationManager, UserRepository userRepository, PasswordEncoder passwordEncoder, UserValidator userValidator) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.userValidator = userValidator;
     }
 
     public USER_AUTH_ACTION registerUser(SignUpDTO signUpDto) {
@@ -63,6 +66,11 @@ public class UserAuthService {
             e.printStackTrace();
             return USER_AUTH_ACTION.SIGNIN_FAIL;
         }
+    }
+
+    public void deleteUser(String userName) {
+        userValidator.validateDeleteUser(userName);
+        userRepository.deleteByUsername(userName);
     }
 
 }

@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.storage.metadata.service.UserAuthService;
 import org.storage.metadata.util.ResponseUtil;
-import org.storage.metadata.worker.dto.LoginDTO;
-import org.storage.metadata.worker.dto.SignUpDTO;
+import org.storage.metadata.model.orchestrator.dto.LoginDTO;
+import org.storage.metadata.model.orchestrator.dto.SignUpDTO;
 
 @RestController
 @RequestMapping("/api/auth")

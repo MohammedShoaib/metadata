@@ -2,11 +2,13 @@ package org.storage.metadata.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.storage.metadata.model.User;
 import org.storage.metadata.repository.UserRepository;
+import org.storage.metadata.service.UserAuthService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,11 @@ import java.util.Optional;
 public class UserController {
 
     private UserRepository userRepository;
+    private UserAuthService userAuthService;
 
-    UserController(UserRepository userRepository) {
+    UserController(UserRepository userRepository, UserAuthService userAuthService) {
         this.userRepository = userRepository;
+        this.userAuthService = userAuthService;
     }
 
     @GetMapping("/username")
@@ -45,5 +49,12 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @DeleteMapping("/username")
+    public ResponseEntity<?> deleteUserByUserName(final String userName) {
+
+        userAuthService.deleteUser(userName);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

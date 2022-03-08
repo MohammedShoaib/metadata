@@ -1,4 +1,4 @@
-package org.storage.metadata.worker.dto;
+package org.storage.metadata.model.orchestrator.dto;
 
 import lombok.Data;
 import lombok.ToString;
