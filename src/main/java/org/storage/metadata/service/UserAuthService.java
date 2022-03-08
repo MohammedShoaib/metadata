@@ -1,5 +1,7 @@
 package org.storage.metadata.service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +13,10 @@ import org.storage.metadata.repository.UserRepository;
 import org.storage.metadata.model.orchestrator.dto.LoginDTO;
 import org.storage.metadata.model.orchestrator.dto.SignUpDTO;
 import org.storage.metadata.validator.UserValidator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserAuthService {
@@ -71,6 +77,20 @@ public class UserAuthService {
     public void deleteUser(String userName) {
         userValidator.validateDeleteUser(userName);
         userRepository.deleteByUsername(userName);
+    }
+
+    public Optional<User> getUserByUsername(String userName) {
+        return userRepository.findByUsername(userName);
+    }
+
+    public List<User> getAllUsers() {
+        List<User> Users = new ArrayList<User>();
+        try {
+            Users.addAll(userRepository.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Users;
     }
 
 }

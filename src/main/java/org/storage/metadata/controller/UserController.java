@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.storage.metadata.model.User;
 import org.storage.metadata.repository.UserRepository;
 import org.storage.metadata.service.UserAuthService;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,32 +26,22 @@ public class UserController {
 
     @GetMapping("/username")
     public ResponseEntity<?> getUserByUserName(final String userName) {
-        Optional<User> user = userRepository.findByUsername(userName);
-
+        Optional<User> user = userAuthService.getUserByUsername(userName);
         if(user.isPresent()) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>("No user found with given username!", HttpStatus.NO_CONTENT);
     }
 
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
-        try {
-            List<User> Users = new ArrayList<User>();
-            userRepository.findAll().forEach(Users::add);
-            if (Users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(Users, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<User> users = userAuthService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @DeleteMapping("/username")
     public ResponseEntity<?> deleteUserByUserName(final String userName) {
-
         userAuthService.deleteUser(userName);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
