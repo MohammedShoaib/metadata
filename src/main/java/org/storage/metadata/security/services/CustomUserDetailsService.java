@@ -12,6 +12,7 @@ import org.storage.metadata.repository.UserRepository;
 import org.storage.metadata.model.User;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found with username or email:" + usernameOrEmail));
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+                user.getPassword(), mapRolesToAuthorities(Collections.singleton(user.getRole())));
     }
 
     private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles){
