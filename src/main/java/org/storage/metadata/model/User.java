@@ -1,4 +1,5 @@
 package org.storage.metadata.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
+@JsonIgnoreProperties("password")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
