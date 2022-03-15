@@ -1,5 +1,6 @@
 package org.storage.metadata.controller;
 
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,6 +38,7 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userAuthService.getAllUsers();
+        users.forEach(Hibernate::initialize);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

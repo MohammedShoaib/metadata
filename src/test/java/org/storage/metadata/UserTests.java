@@ -29,7 +29,7 @@ public class UserTests {
         user.setPassword("r123!");
 
         User savedUser = userRepository.save(user);
-        User existUser = testEntityManager.find(User.class, savedUser.getId());
+        User existUser = testEntityManager.find(User.class, savedUser.getUser_id());
 
         assertThat(existUser.getEmail().equals(user.getEmail()));
     }

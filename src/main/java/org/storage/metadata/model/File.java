@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -23,13 +22,14 @@ public class File {
     @NotBlank
     private String namespace;
 
-    private boolean isDeleted = false;
+    private Boolean isDeleted;
 
-    private boolean isDirectory = false;
+    private Boolean isDirectory;
 
-    private Date dateCreated;
+    // Epoch timestamp
+    private Long dateCreated;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
     private List<FileChunk> chunks;
 }
