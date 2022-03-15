@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "chunk_location")
 public class ChunkLocation {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chunk_location_id;
 
     @Column
     @NotNull
-    private Long path_to_chunk;
+    private String path_to_chunk;
 }

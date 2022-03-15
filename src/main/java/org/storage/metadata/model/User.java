@@ -32,7 +32,7 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
 

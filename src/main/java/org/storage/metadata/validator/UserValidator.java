@@ -14,8 +14,13 @@ public class UserValidator {
     }
 
     public void validateDeleteUser(String userName) {
-
         if (!userRepository.existsByUsername(userName)) {
+            throw new UserNotExistException();
+        }
+    }
+
+    public void validateUser(String usernameOrEmail) {
+        if (!userRepository.existsByUsername(usernameOrEmail) && !userRepository.existsByEmail(usernameOrEmail)) {
             throw new UserNotExistException();
         }
     }

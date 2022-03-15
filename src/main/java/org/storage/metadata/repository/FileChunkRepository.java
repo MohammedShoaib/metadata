@@ -1,9 +1,10 @@
 package org.storage.metadata.repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.storage.metadata.model.Role;
+import org.storage.metadata.model.FileChunk;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
-    Role findByName(String name);
+public interface FileChunkRepository extends JpaRepository<FileChunk, Long> {
+
 }
