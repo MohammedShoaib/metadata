@@ -16,7 +16,7 @@ val akkaHttpVersion = "10.1.7"
 val json4sVersion   = "3.6.3"
 
 libraryDependencies ++= Seq(
-  "ch.qos.logback"             % "logback-classic"    % "1.2.3",
+  "ch.qos.logback"             % "logback-classic"    % "1.2.11",
   "com.tesla"                  %% "common-core"       % "1.6.0+f6d04cf.143",
   "com.typesafe"               % "config"             % "1.3.3",
   "com.typesafe.akka"          %% "akka-actor"        % akkaVersion,
