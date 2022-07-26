@@ -25,7 +25,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"          %% "akka-http-testkit" % akkaHttpVersion,
   "com.typesafe.akka"          %% "akka-stream"       % akkaVersion,
   "com.typesafe.akka"          %% "akka-testkit"      % akkaVersion % Test,
-  "com.typesafe.scala-logging" %% "scala-logging"     % "3.9.0",
+  "com.typesafe.scala-logging" %% "scala-logging"     % "3.9.5",
   "commons-codec"              % "commons-codec"      % "1.14",
   "io.skuber"                  %% "skuber"            % "2.0.12",
   "org.json4s"                 %% "json4s-jackson"    % json4sVersion,
