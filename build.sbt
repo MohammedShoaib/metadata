@@ -13,7 +13,7 @@ scalaVersion := "2.12.8"
 
 val akkaVersion     = "2.5.19"
 val akkaHttpVersion = "10.1.7"
-val json4sVersion   = "3.6.3"
+val json4sVersion   = "3.6.12"
 
 libraryDependencies ++= Seq(
   "ch.qos.logback"             % "logback-classic"    % "1.2.3",
