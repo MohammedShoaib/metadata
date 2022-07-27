@@ -9,7 +9,7 @@ val gitCommit =
 val buildNumber = sys.env.getOrElse("BUILD_NUMBER", "000")
 
 version := "0.1.0+" + gitCommit.substring(0, 7) + "." + buildNumber // scalastyle:ignore
-scalaVersion := "2.12.8"
+scalaVersion := "2.12.16"
 
 val akkaVersion     = "2.5.19"
 val akkaHttpVersion = "10.1.7"
