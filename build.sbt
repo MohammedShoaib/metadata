@@ -12,7 +12,7 @@ version := "0.1.0+" + gitCommit.substring(0, 7) + "." + buildNumber // scalastyl
 scalaVersion := "2.12.8"
 
 val akkaVersion     = "2.5.19"
-val akkaHttpVersion = "10.1.7"
+val akkaHttpVersion = "10.2.9"
 val json4sVersion   = "3.6.3"
 
 libraryDependencies ++= Seq(
